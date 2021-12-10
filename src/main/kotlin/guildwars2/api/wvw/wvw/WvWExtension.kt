@@ -5,9 +5,9 @@ import retrofit2.Retrofit
 interface WvWExtension {
     val retrofit: Retrofit
 
-    suspend fun getWvWTypes(): List<String> {
+    suspend fun getApiTypes(): List<String> {
         val api: WvWApi = retrofit.create(WvWApi::class.java)
 
-        return api.getWvWTypesAsync().await()
+        return api.getApiTypesAsync().await()
     }
 }
