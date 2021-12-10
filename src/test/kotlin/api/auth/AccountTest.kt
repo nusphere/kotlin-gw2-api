@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 class AccountTest: GW2MockApi() {
 
     @Test
-    fun useAuthAccountApiTest() {
+    fun useAuthAccountApiDeniedTest() {
         server.apply {
             enqueue(MockResponse().setBody(MockResponseFileReader("json/auth/account.json").content))
         }
@@ -23,5 +23,18 @@ class AccountTest: GW2MockApi() {
         }
 
         assertEquals("token has no permission for account", exception.message)
+    }
+
+    @Test
+    fun useAuthAccountApiTest() {
+        server.apply {
+            enqueue(MockResponse().setBody(MockResponseFileReader("json/auth/account-permission.json").content))
+            enqueue(MockResponse().setBody(MockResponseFileReader("json/auth/account.json").content))
+        }
+
+        val testApi = Api("valid_api_key")
+        val account = testApi.Auth(retrofit).getAccount()
+
+        assertEquals("Account.1234", account.name)
     }
 }
