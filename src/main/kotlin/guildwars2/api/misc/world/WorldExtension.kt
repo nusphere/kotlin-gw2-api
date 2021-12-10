@@ -7,15 +7,12 @@ interface WorldExtension {
 
     suspend fun getWorld(worldId: Int): World? {
         val api: WorldApi = retrofit.create(WorldApi::class.java)
-        val worldCollection: Collection<World>
 
-        try {
-            worldCollection = api.getWorldsAsync(worldId.toString()).await()
+        return try {
+            api.getWorldsAsync(worldId.toString()).await().first()
         } catch (e: Exception) {
             return null
         }
-
-        return worldCollection.first();
     }
 
     suspend fun getWorlds(worldIds: MutableList<Int>? = null): Collection<World>? {
