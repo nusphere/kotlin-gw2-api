@@ -20,6 +20,13 @@ class WorldTest: GW2MockApi() {
         val worlds = mutableListOf(1001, 1200)
         val worldCollection = testApi.Misc(retrofit).getWorlds(worlds)
 
-        assertEquals(3, worldCollection?.size)
+        assertEquals(3, worldCollection!!.size)
+
+        val world = worldCollection.first()
+
+        assertEquals("Amboss-Stein", world.name)
+        assertEquals("North America", world.region)
+        assertEquals("Full", world.population)
+        assertEquals("English", world.language)
     }
 }
