@@ -11,7 +11,7 @@ interface Permission {
 
         val permissions = api.getTokenInfoAsync().await().permissions
 
-        if (!permissions.contains(requirePermission)) {
+        if (permissions === null || !permissions.contains(requirePermission)) {
             throw Exception("token has no permission for $requirePermission")
         }
 

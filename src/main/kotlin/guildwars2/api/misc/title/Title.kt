@@ -4,5 +4,5 @@ data class Title(
     var id: Long,
     var name: String,
     var achievement: Long,
-    var achievements: Collection<Long>
+    var achievements: List<Long> = emptyList()
 )
