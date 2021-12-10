@@ -1,28 +1,29 @@
 package guildwars2.api.misc.color
 
 import guildwars2.api.misc.color.data.Color
+import kotlinx.coroutines.runBlocking
 import retrofit2.Retrofit
 
 interface ColorExtension {
     val retrofit: Retrofit
     private val api: ColorApi get() = retrofit.create(ColorApi::class.java)
 
-    suspend fun getColorIds(): Collection<Int> = api.getColorIdsAsync().await()
+    fun getColorIds(): Collection<Int> = runBlocking { api.getColorIdsAsync().await() }
 
-    suspend fun getColor(colorId: Int, language: String = "en"): Color? {
+    fun getColor(colorId: Int, language: String = "en"): Color? = runBlocking {
         guardLanguage(language)
 
-        return try {
+        return@runBlocking try {
             api.getColorAsync(colorId.toString(), language).await().first()
         } catch (e: Exception) {
              null
         }
     }
 
-    suspend fun getColors(colorIds: MutableList<Int>? = null, language: String = "en"): Collection<Color>? {
+    fun getColors(colorIds: MutableList<Int>? = null, language: String = "en"): Collection<Color>? = runBlocking {
         guardLanguage(language)
 
-        return try {
+        return@runBlocking try {
             api.getColorAsync(colorIds?.joinToString(",") ?: "all", language).await()
         } catch (e: Exception) {
             null

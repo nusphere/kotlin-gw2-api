@@ -32,7 +32,7 @@ class Api (private var apiKey: String)
         .build()
 
     inner class Auth(
-        override val retrofit: Retrofit = this.retrofit
+        override val retrofit: Retrofit = this.retrofit,
     ): AccountExtension, TokenInfoExtension
 
     inner class Misc(
