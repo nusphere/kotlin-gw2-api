@@ -51,7 +51,6 @@ jobs:
           ./gradlew build
           ./gradlew jacocoTestReport
           bash <(curl -s https://codecov.io/bash)
-          ./gradlew run
 
       - name: Upstream to Standards
         env:
