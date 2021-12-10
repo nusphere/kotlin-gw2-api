@@ -53,9 +53,6 @@ jobs:
           bash <(curl -s https://codecov.io/bash)
           ./gradlew run
 
-      - name: Test with Gradle
-        run: ./gradlew test
-
       - name: Upstream to Standards
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
