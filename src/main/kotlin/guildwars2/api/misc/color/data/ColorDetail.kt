@@ -1,4 +1,4 @@
-package guildwars2.api.misc.color
+package guildwars2.api.misc.color.data
 
 import com.google.gson.annotations.SerializedName
 

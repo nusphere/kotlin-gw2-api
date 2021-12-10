@@ -1,5 +1,6 @@
 package guildwars2.api.misc.color
 
+import guildwars2.api.misc.color.data.Color
 import retrofit2.Retrofit
 
 interface ColorExtension {

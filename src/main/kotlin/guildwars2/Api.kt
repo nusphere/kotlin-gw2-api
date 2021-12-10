@@ -7,6 +7,7 @@ import guildwars2.api.misc.build.BuildExtension
 import guildwars2.api.misc.color.ColorExtension
 import guildwars2.api.misc.title.TitleExtension
 import guildwars2.api.misc.world.WorldExtension
+import guildwars2.api.wvw.match.MatchExtension
 import guildwars2.api.wvw.wvw.WvWExtension
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -40,5 +41,5 @@ class Api (private var apiKey: String)
 
     inner class WvW(
         override val retrofit: Retrofit = this.retrofit,
-    ): WvWExtension
+    ): WvWExtension, MatchExtension
 }

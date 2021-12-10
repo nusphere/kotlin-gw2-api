@@ -1,11 +1,10 @@
-package guildwars2.api.misc.color
+package guildwars2.api.misc.color.data
 
 import com.google.gson.annotations.SerializedName
 
 /**
  * @param id - The color id.
  * @param name (string) – The color name.
- * @param base (array of numbers) – The base RGB values.
  * @param cloth (object) – Detailed information on its appearance when applied on cloth armor.
  * @param leather (object) – Detailed information on its appearance when applied on leather armor.
  * @param metal (object) – Detailed information on its appearance when applied on metal armor.
@@ -15,6 +14,8 @@ import com.google.gson.annotations.SerializedName
  *     Hue: Gray, Brown, Red, Orange, Yellow, Green, Blue, Purple
  *     Material: Vibrant, Leather, Metal
  *     Rarity: Starter, Common, Uncommon, Rare, Exclusive
+ *
+ * @property baseRGB The base RGB values.
  */
 data class Color(
     var id: Long,

@@ -1,5 +1,6 @@
 package guildwars2.api.misc.color
 
+import guildwars2.api.misc.color.data.Color
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query

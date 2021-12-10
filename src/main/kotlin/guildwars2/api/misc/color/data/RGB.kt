@@ -1,4 +1,4 @@
-package guildwars2.api.misc.color
+package guildwars2.api.misc.color.data
 
 data class RGB (
     val r: Int?,
