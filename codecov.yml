@@ -1,8 +1,2 @@
 {
-  "fixes": [
-      "/home/runner/work/kotlin-gw2-api/kotlin-gw2-api/::"
-  ],
-  "codecov": {
-    "disable_default_path_fixes": true
-  }
 }
