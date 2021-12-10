@@ -1,0 +1,8 @@
+{
+  "fixes": [
+      "/home/runner/work/nusphere/kotlin-gw2-api/::"
+  ],
+  "codecov": {
+    "disable_default_path_fixes": true
+  }
+}
