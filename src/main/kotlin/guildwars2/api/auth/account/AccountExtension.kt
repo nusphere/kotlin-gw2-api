@@ -5,11 +5,10 @@ import retrofit2.Retrofit
 
 interface AccountExtension: Permission {
     override val retrofit: Retrofit
+    private val api: AccountApi get() = retrofit.create(AccountApi::class.java)
 
     suspend fun getAccount(): Account {
         guardPermission("account")
-
-        val api: AccountApi = retrofit.create(AccountApi::class.java)
 
         return api.getAccount().await()
     }

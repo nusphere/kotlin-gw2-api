@@ -4,10 +4,7 @@ import retrofit2.Retrofit
 
 interface TokenInfoExtension {
     val retrofit: Retrofit
+    private val api: TokenInfoApi get() = retrofit.create(TokenInfoApi::class.java)
 
-    suspend fun getTokenInfo(): TokenInfo {
-        val api: TokenInfoApi = retrofit.create(TokenInfoApi::class.java)
-
-        return api.getTokenInfoAsync().await()
-    }
+    suspend fun getTokenInfo(): TokenInfo = api.getTokenInfoAsync().await()
 }

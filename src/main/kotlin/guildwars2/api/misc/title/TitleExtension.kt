@@ -4,32 +4,21 @@ import retrofit2.Retrofit
 
 interface TitleExtension {
     val retrofit: Retrofit
+    private val api: TitleApi get() = retrofit.create(TitleApi::class.java)
+
+    suspend fun getTitleIds(): Collection<Int> = api.getTitleIdsAsync().await()
 
     suspend fun getTitle(titleId: Int, language: String = "en"): Title? {
-        val api: TitleApi = retrofit.create(TitleApi::class.java)
-        val titleCollection: Collection<Title>
-
-        // test language str
         guardLanguage(language)
 
-        try {
-            titleCollection = api.getTitlesAsync(titleId.toString(), language).await()
+        return try {
+            api.getTitlesAsync(titleId.toString(), language).await().first()
         } catch (e: Exception) {
-            return null
+            null
         }
-
-        return titleCollection.first()
-    }
-
-    suspend fun getTitleIds(): Collection<Int> {
-        val api: TitleApi = retrofit.create(TitleApi::class.java)
-
-        return api.getTitleIdsAsync().await()
     }
 
     suspend fun getTitles(titleIds: MutableList<Int>? = null, language: String = "en"): Collection<Title>? {
-        val api: TitleApi = retrofit.create(TitleApi::class.java)
-
         guardLanguage(language)
 
         return try {

@@ -5,16 +5,11 @@ import retrofit2.Retrofit
 
 interface ColorExtension {
     val retrofit: Retrofit
+    private val api: ColorApi get() = retrofit.create(ColorApi::class.java)
 
-    suspend fun getColorIds(): Collection<Int> {
-        val api: ColorApi = retrofit.create(ColorApi::class.java)
-
-        return api.getColorIdsAsync().await()
-    }
+    suspend fun getColorIds(): Collection<Int> = api.getColorIdsAsync().await()
 
     suspend fun getColor(colorId: Int, language: String = "en"): Color? {
-        val api: ColorApi = retrofit.create(ColorApi::class.java)
-
         guardLanguage(language)
 
         return try {
@@ -25,8 +20,6 @@ interface ColorExtension {
     }
 
     suspend fun getColors(colorIds: MutableList<Int>? = null, language: String = "en"): Collection<Color>? {
-        val api: ColorApi = retrofit.create(ColorApi::class.java)
-
         guardLanguage(language)
 
         return try {
