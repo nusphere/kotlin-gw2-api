@@ -49,7 +49,7 @@ jobs:
           API_KEY: ${{ secrets.API_KEY }}
         run: |
           ./gradlew build
-          ./gradlew test
+          ./gradlew jacocoTestReport
           bash <(curl -s https://codecov.io/bash)
           ./gradlew run
 
