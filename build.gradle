@@ -4,8 +4,8 @@ plugins {
     id 'jacoco'
 }
 
-group = 'me.sebastian.hopfe'
-version = '1.0-SNAPSHOT'
+group = 'de.nusphere'
+version = '0.1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
