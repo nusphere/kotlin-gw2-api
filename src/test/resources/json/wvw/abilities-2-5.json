@@ -1,0 +1,58 @@
+[
+  {
+    "id": 2,
+    "name": "Guard Killer",
+    "description": "Increases damage to enemy guards",
+    "icon": "https://render.guildwars2.com/file/C5E6E906927E2C6311036C11F1306CCF57CBF259/544537.png",
+    "ranks": [
+      {
+        "cost": 1,
+        "effect": "4% damage to guards"
+      },
+      {
+        "cost": 3,
+        "effect": "8% (total) damage to guards"
+      },
+      {
+        "cost": 6,
+        "effect": "12% (total) damage to guards"
+      },
+      {
+        "cost": 10,
+        "effect": "16% (total) damage to guards. All Guard Killer bonuses now also affect enemy lords and supervisors."
+      },
+      {
+        "cost": 15,
+        "effect": "20% (total) damage to guards, lords, and supervisors. Gain 50% of your endurance back after killing guards, lords, and supervisors."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Siege Bunker",
+    "description": "Reduces the siege damage you take",
+    "icon": "https://render.guildwars2.com/file/A1B55D6AC11CA15BB6D84E040D7841E741446E7F/544539.png",
+    "ranks": [
+      {
+        "cost": 1,
+        "effect": "2% increased siege defense"
+      },
+      {
+        "cost": 3,
+        "effect": "4% (total) increased siege defense"
+      },
+      {
+        "cost": 6,
+        "effect": "6% (total) increased siege defense"
+      },
+      {
+        "cost": 10,
+        "effect": "8% (total) increased siege defense"
+      },
+      {
+        "cost": 15,
+        "effect": "10% (total) increased siege defense"
+      }
+    ]
+  }
+]
