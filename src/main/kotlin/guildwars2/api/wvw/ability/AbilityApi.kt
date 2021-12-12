@@ -1,6 +1,6 @@
-package guildwars2.api.wvw.abilities
+package guildwars2.api.wvw.ability
 
-import guildwars2.api.wvw.abilities.data.Ability
+import guildwars2.api.wvw.ability.data.Ability
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query

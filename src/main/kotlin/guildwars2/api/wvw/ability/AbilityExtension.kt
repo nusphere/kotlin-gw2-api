@@ -1,6 +1,6 @@
-package guildwars2.api.wvw.abilities
+package guildwars2.api.wvw.ability
 
-import guildwars2.api.wvw.abilities.data.Ability
+import guildwars2.api.wvw.ability.data.Ability
 import kotlinx.coroutines.runBlocking
 import retrofit2.Retrofit
 

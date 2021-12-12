@@ -1,4 +1,4 @@
-package guildwars2.api.wvw.abilities.data
+package guildwars2.api.wvw.ability.data
 
 /**
  * The response is an object with the single property id containing the current build id as a number.

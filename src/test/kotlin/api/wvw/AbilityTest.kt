@@ -30,7 +30,8 @@ class AbilityTest: GW2MockApi() {
         val testApi = Api("valid_api_key")
         val ability = testApi.WvW(retrofit).getAbility(2)
 
-        assertEquals("Guard Killer", ability!!.name)
+        assertEquals(2, ability!!.id)
+        assertEquals("Guard Killer", ability.name)
         assertEquals("Increases damage to enemy guards", ability.description)
         assertEquals("https://render.guildwars2.com/file/C5E6E906927E2C6311036C11F1306CCF57CBF259/544537.png", ability.icon)
         assertEquals(5, ability.ranks.size)
@@ -55,7 +56,8 @@ class AbilityTest: GW2MockApi() {
 
         val ability = abilityList?.first()
 
-        assertEquals("Guard Killer", ability!!.name)
+        assertEquals(2, ability!!.id)
+        assertEquals("Guard Killer", ability.name)
         assertEquals("Increases damage to enemy guards", ability.description)
         assertEquals("https://render.guildwars2.com/file/C5E6E906927E2C6311036C11F1306CCF57CBF259/544537.png", ability.icon)
         assertEquals(5, ability.ranks.size)

@@ -1,4 +1,4 @@
-package guildwars2.api.wvw.abilities.data
+package guildwars2.api.wvw.ability.data
 
 data class Rank(
     var cost: Int,
