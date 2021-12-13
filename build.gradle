@@ -8,7 +8,7 @@ plugins {
 
 ext {
     PUBLISH_GROUP_ID = 'io.github.nusphere'
-    PUBLISH_VERSION = '0.1.1'
+    PUBLISH_VERSION = '0.2.x-SNAPSHOT'
     PUBLISH_ARTIFACT_ID = 'kotlin-gw2-api'
 }
 
