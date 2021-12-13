@@ -1,5 +1,7 @@
 [![CI](https://github.com/nusphere/kotlin-gw2-api/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/nusphere/kotlin-gw2-api/actions/workflows/build_and_test.yml)
 [![codecov](https://codecov.io/gh/nusphere/kotlin-gw2-api/branch/master/graph/badge.svg?token=DWTS6NC7LP)](https://codecov.io/gh/nusphere/kotlin-gw2-api)
+![master](https://badgen.net/badge/api/0.2.x-SNAPSHOT/orange?label=version)
+
 
 ##Use the library
 
