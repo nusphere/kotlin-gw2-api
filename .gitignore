@@ -3,4 +3,4 @@
 /build/
 /.idea/
 /out/
-gradle.properties
+local.properties
