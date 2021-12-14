@@ -176,5 +176,5 @@ dependencies {
 | World vs. World     | wvw/abilities                | implemented |
 | World vs. World     | wvw/matches                  | implemented |
 | World vs. World     | wvw/objectives               | open        |
-| World vs. World     | wvw/ranks                    | open        |
+| World vs. World     | wvw/ranks                    | implemented |
 | World vs. World     | wvw/upgrades                 | implemented |

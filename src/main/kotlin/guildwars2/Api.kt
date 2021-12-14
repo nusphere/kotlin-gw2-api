@@ -12,6 +12,7 @@ import guildwars2.api.misc.title.TitleExtension
 import guildwars2.api.misc.world.WorldExtension
 import guildwars2.api.wvw.ability.AbilityExtension
 import guildwars2.api.wvw.match.MatchExtension
+import guildwars2.api.wvw.rank.RankExtension
 import guildwars2.api.wvw.upgrade.UpgradeExtension
 import guildwars2.api.wvw.wvw.WvWExtension
 import okhttp3.OkHttpClient
@@ -46,5 +47,5 @@ class Api (private var apiKey: String)
 
     inner class WvW(
         override val retrofit: Retrofit = this.retrofit,
-    ): WvWExtension, MatchExtension, AbilityExtension, UpgradeExtension
+    ): WvWExtension, MatchExtension, AbilityExtension, UpgradeExtension, RankExtension
 }
