@@ -10,7 +10,7 @@ import kotlin.test.assertEquals
 class AbilityTest: GW2MockApi() {
 
     @Test
-    fun useAbilityIdsApiTest() {
+    fun getAbilityIdsApiTest() {
         server.apply {
             enqueue(MockResponse().setBody(MockResponseFileReader("json/wvw/abilities.json").content))
         }
@@ -22,7 +22,21 @@ class AbilityTest: GW2MockApi() {
     }
 
     @Test
-    fun useAbilityApiTest() {
+    fun getAbilityIdsHeadersApiTest() {
+        val content = MockResponseFileReader("json/wvw/abilities.json").content
+
+        server.apply {
+            enqueue(MockResponse().setBody(content))
+        }
+
+        val testApi = Api("valid_api_key")
+        val headers = testApi.WvW(retrofit).getAbilityIdHeaders()
+
+        assertEquals(content.length.toString(), headers?.get("Content-Length"))
+    }
+
+    @Test
+    fun getAbilityApiTest() {
         server.apply {
             enqueue(MockResponse().setBody(MockResponseFileReader("json/wvw/ability.json").content))
         }
@@ -39,7 +53,19 @@ class AbilityTest: GW2MockApi() {
         assertEquals("4% damage to guards", ability?.ranks?.first()?.effect)
     }
 
+    @Test
+    fun getAbilityHeadersApiTest() {
+        val content = MockResponseFileReader("json/wvw/ability.json").content
 
+        server.apply {
+            enqueue(MockResponse().setBody(content))
+        }
+
+        val testApi = Api("valid_api_key")
+        val headers = testApi.WvW(retrofit).getAbilityHeaders(2)
+
+        assertEquals(content.length.toString(), headers?.get("Content-Length"))
+    }
 
     @Test
     fun useAbilitiesApiTest() {
@@ -63,5 +89,20 @@ class AbilityTest: GW2MockApi() {
         assertEquals(5, ability?.ranks?.size)
         assertEquals(1, ability?.ranks?.first()?.cost)
         assertEquals("4% damage to guards", ability?.ranks?.first()?.effect)
+    }
+
+    @Test
+    fun getAbilitiesHeadersApiTest() {
+        val content = MockResponseFileReader("json/wvw/abilities-2-5.json").content
+
+        server.apply {
+            enqueue(MockResponse().setBody(content))
+        }
+
+        val testApi = Api("valid_api_key")
+        val list = mutableListOf(2, 5)
+        val headers = testApi.WvW(retrofit).getAbilitiesHeaders(list)
+
+        assertEquals(content.length.toString(), headers?.get("Content-Length"))
     }
 }
