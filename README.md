@@ -52,4 +52,8 @@ repositories {
         }
     }
 }
+
+dependencies {
+    implementation 'io.github.nusphere:kotlin-gw2-api:0.2.x-SNAPSHOT'
+}
 ```
