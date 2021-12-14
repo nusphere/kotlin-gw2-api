@@ -10,13 +10,9 @@ interface AccountExtension: Permission {
     override val retrofit: Retrofit
     private val api: AccountApi get() = retrofit.create(AccountApi::class.java)
 
-    fun getAccount(): Account? = runBlocking {
-        return@runBlocking getAccountResponse()?.body()
-    }
+    fun getAccount(): Account? = runBlocking { getAccountResponse()?.body() }
 
-    fun getAccountHeaders(): Headers? = runBlocking {
-        return@runBlocking getAccountResponse()?.headers()
-    }
+    fun getAccountHeaders(): Headers? = runBlocking { getAccountResponse()?.headers() }
 
     suspend fun getAccountResponse(): Response<Account>? {
         guardPermission("account")

@@ -10,13 +10,9 @@ interface DyesExtension: Permission {
     override val retrofit: Retrofit
     private val api: DyesApi get() = retrofit.create(DyesApi::class.java)
 
-    fun getDyesIds(): List<Int>? = runBlocking {
-        return@runBlocking getDyesResponse()?.body()
-    }
+    fun getDyesIds(): List<Int>? = runBlocking { getDyesResponse()?.body() }
 
-    fun getDyesHeaders(): Headers? = runBlocking {
-        return@runBlocking getDyesResponse()?.headers()
-    }
+    fun getDyesHeaders(): Headers? = runBlocking { getDyesResponse()?.headers() }
 
     suspend fun getDyesResponse(): Response<List<Int>>? {
         guardPermission("account")

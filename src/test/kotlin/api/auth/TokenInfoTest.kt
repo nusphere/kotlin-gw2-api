@@ -25,4 +25,18 @@ class TokenInfoTest: GW2MockApi() {
         assertContains(tokenInfo?.permissions ?: emptyList(), "tradingpost")
     }
 
+    @Test
+    fun useDyesApiHeaderTest() {
+        val content = MockResponseFileReader("json/auth/tokeninfo.json").content
+
+        server.apply {
+            enqueue(MockResponse().setBody(content))
+        }
+
+        val testApi = Api("valid_api_key")
+        val headers = testApi.Auth(retrofit).getTokenInfoHeader()
+
+        assertEquals(content.length.toString(), headers?.get("Content-Length"))
+    }
+
 }
