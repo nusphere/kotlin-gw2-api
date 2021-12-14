@@ -15,16 +15,16 @@ interface UpgradeExtension {
 
     fun getUpgrade(upgradeId: Int, language: String = "en"): Upgrade? = runBlocking {
         return@runBlocking try {
-            getUpdateResponse(upgradeId.toString(), language).body()
+            getUpdateResponse(upgradeId, language).body()
         } catch (e: Exception) {
             null
         }
     }
 
     fun getUpgradeHeaders(upgradeId: Int, language: String = "en"): Headers? = runBlocking {
-        return@runBlocking getUpdateResponse(upgradeId.toString(), language).headers()
+        return@runBlocking getUpdateResponse(upgradeId, language).headers()
     }
 
     suspend fun getUpdateIdResponse(): Response<List<Int>> = api.getUpgradeIdsAsync()
-    suspend fun getUpdateResponse(upgradeId: String, language: String = "en"): Response<Upgrade> = api.getUpgradeAsync(upgradeId, language)
+    suspend fun getUpdateResponse(upgradeId: Int, language: String = "en"): Response<Upgrade> = api.getUpgradeAsync(upgradeId, language)
 }

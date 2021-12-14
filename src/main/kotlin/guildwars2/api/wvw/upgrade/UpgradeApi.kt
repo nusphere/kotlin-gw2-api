@@ -13,7 +13,7 @@ interface UpgradeApi {
 
     @GET("/v2/wvw/upgrades/{upgrade_id}")
     suspend fun getUpgradeAsync(
-        @Path(value = "upgrade_id", encoded = true) upgradeId: String,
+        @Path(value = "upgrade_id", encoded = true) upgradeId: Int,
         @Query("lang") lang: String = "en"
     ): Response<Upgrade>
 }
