@@ -26,7 +26,7 @@ class TokenInfoTest: GW2MockApi() {
     }
 
     @Test
-    fun useDyesApiHeaderTest() {
+    fun useAuthTokenInfoApiHeaderTest() {
         val content = MockResponseFileReader("json/auth/tokeninfo.json").content
 
         server.apply {
