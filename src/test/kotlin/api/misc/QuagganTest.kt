@@ -18,7 +18,7 @@ class QuagganTest: GW2MockApi() {
 
         val testApi = Api("valid_api_key")
 
-        val quagganImageIds = testApi.Misc(retrofit).getQuagganImageIds()
+        val quagganImageIds = testApi.Misc(retrofit).getQuagganImageIds() ?: emptyList()
 
         assertContains(quagganImageIds, "404")
         assertContains(quagganImageIds, "bubble")

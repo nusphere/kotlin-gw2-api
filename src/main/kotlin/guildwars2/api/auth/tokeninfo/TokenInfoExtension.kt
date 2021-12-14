@@ -8,5 +8,5 @@ interface TokenInfoExtension {
 
     private val api: TokenInfoApi get() = retrofit.create(TokenInfoApi::class.java)
 
-    fun getTokenInfo(): TokenInfo = runBlocking { api.getTokenInfoAsync().await() }
+    fun getTokenInfo(): TokenInfo? = runBlocking { api.getTokenInfoAsync().body() }
 }

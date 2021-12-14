@@ -7,23 +7,23 @@ interface TitleExtension {
     val retrofit: Retrofit
     private val api: TitleApi get() = retrofit.create(TitleApi::class.java)
 
-    fun getTitleIds(): Collection<Int> = runBlocking { api.getTitleIdsAsync().await() }
+    fun getTitleIds(): List<Int>? = runBlocking { api.getTitleIdsAsync().body() }
 
     fun getTitle(titleId: Int, language: String = "en"): Title? = runBlocking {
         guardLanguage(language)
 
         return@runBlocking try {
-            api.getTitlesAsync(titleId.toString(), language).await().first()
+            api.getTitlesAsync(titleId.toString(), language).body()?.first()
         } catch (e: Exception) {
             null
         }
     }
 
-    fun getTitles(titleIds: MutableList<Int>? = null, language: String = "en"): Collection<Title>? = runBlocking {
+    fun getTitles(titleIds: MutableList<Int>? = null, language: String = "en"): List<Title>? = runBlocking {
         guardLanguage(language)
 
         return@runBlocking try {
-            api.getTitlesAsync(titleIds?.joinToString(",") ?: "all", language).await()
+            api.getTitlesAsync(titleIds?.joinToString(",") ?: "all", language).body()
         } catch (e: Exception) {
             null
         }

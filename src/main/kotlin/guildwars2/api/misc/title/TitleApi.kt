@@ -1,6 +1,6 @@
 package guildwars2.api.misc.title
 
-import kotlinx.coroutines.Deferred
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,10 +13,12 @@ interface TitleApi {
      * https://api.guildwars2.com/v2/titles?ids=222&lang=de
      * https://api.guildwars2.com/v2/titles?ids=222,300,369&lang=de
      */
-    @GET("/v2/titles") fun getTitlesAsync(
+    @GET("/v2/titles")
+    suspend fun getTitlesAsync(
         @Query("ids") ids: String = "all",
         @Query("lang") lang: String = "en",
-    ): Deferred<Collection<Title>>
+    ): Response<List<Title>>
 
-    @GET("/v2/titles") fun getTitleIdsAsync(): Deferred<Collection<Int>>
+    @GET("/v2/titles")
+    suspend fun getTitleIdsAsync(): Response<List<Int>>
 }

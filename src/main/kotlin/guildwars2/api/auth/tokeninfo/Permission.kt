@@ -9,7 +9,7 @@ interface Permission {
     fun guardPermission(requirePermission: String): Boolean = runBlocking {
         val api: TokenInfoApi = retrofit.create(TokenInfoApi::class.java)
 
-        val permissions = api.getTokenInfoAsync().await().permissions
+        val permissions = api.getTokenInfoAsync().body()?.permissions
 
         if (permissions === null || !permissions.contains(requirePermission)) {
             throw Exception("token has no permission for $requirePermission")

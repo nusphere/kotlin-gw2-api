@@ -7,5 +7,5 @@ interface WvWExtension {
     val retrofit: Retrofit
     private val api: WvWApi get() = retrofit.create(WvWApi::class.java)
 
-    fun getApiTypes(): List<String> = runBlocking { api.getApiTypesAsync().await() }
+    suspend fun getApiTypes(): List<String>? = runBlocking { api.getApiTypesAsync().body() }
 }

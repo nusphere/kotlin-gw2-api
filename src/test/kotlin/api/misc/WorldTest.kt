@@ -18,9 +18,9 @@ class WorldTest: GW2MockApi() {
         val testApi = Api("valid_api_key")
 
         val worlds = mutableListOf(1001, 1200)
-        val worldCollection = testApi.Misc(retrofit).getWorlds(worlds)
+        val worldCollection = testApi.Misc(retrofit).getWorlds(worlds) ?: emptyList()
 
-        assertEquals(3, worldCollection!!.size)
+        assertEquals(3, worldCollection.size)
 
         val world = worldCollection.first()
 

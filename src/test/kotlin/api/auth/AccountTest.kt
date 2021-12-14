@@ -35,6 +35,21 @@ class AccountTest: GW2MockApi() {
         val testApi = Api("valid_api_key")
         val account = testApi.Auth(retrofit).getAccount()
 
-        assertEquals("Account.1234", account.name)
+        assertEquals("Account.1234", account?.name)
+    }
+
+    @Test
+    fun getAccountHeaderApiTest() {
+        val content = MockResponseFileReader("json/auth/account.json").content
+
+        server.apply {
+            enqueue(MockResponse().setBody(MockResponseFileReader("json/auth/account-permission.json").content))
+            enqueue(MockResponse().setBody(content))
+        }
+
+        val testApi = Api("valid_api_key")
+        val headers = testApi.Auth(retrofit).getAccountHeader()
+
+        assertEquals(content.length.toString(), headers?.get("Content-Length"))
     }
 }

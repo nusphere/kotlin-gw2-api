@@ -8,23 +8,23 @@ interface ColorExtension {
     val retrofit: Retrofit
     private val api: ColorApi get() = retrofit.create(ColorApi::class.java)
 
-    fun getColorIds(): Collection<Int> = runBlocking { api.getColorIdsAsync().await() }
+    fun getColorIds(): List<Int>? = runBlocking { api.getColorIdsAsync().body() }
 
     fun getColor(colorId: Int, language: String = "en"): Color? = runBlocking {
         guardLanguage(language)
 
         return@runBlocking try {
-            api.getColorAsync(colorId.toString(), language).await().first()
+            api.getColorAsync(colorId.toString(), language).body()?.first()
         } catch (e: Exception) {
              null
         }
     }
 
-    fun getColors(colorIds: MutableList<Int>? = null, language: String = "en"): Collection<Color>? = runBlocking {
+    fun getColors(colorIds: MutableList<Int>? = null, language: String = "en"): List<Color>? = runBlocking {
         guardLanguage(language)
 
         return@runBlocking try {
-            api.getColorAsync(colorIds?.joinToString(",") ?: "all", language).await()
+            api.getColorAsync(colorIds?.joinToString(",") ?: "all", language).body()
         } catch (e: Exception) {
             null
         }

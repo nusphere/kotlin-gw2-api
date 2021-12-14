@@ -7,5 +7,5 @@ interface BuildExtension {
     val retrofit: Retrofit
     private val api: BuildApi get() = retrofit.create(BuildApi::class.java)
 
-    fun getBuild(): Build = runBlocking { api.getBuildAsync().await() }
+    fun getBuild(): Build? = runBlocking { api.getBuildAsync().body() }
 }

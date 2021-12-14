@@ -8,19 +8,19 @@ interface WorldExtension {
 
     private val api: WorldApi get() = retrofit.create(WorldApi::class.java)
 
-    fun getWorldIds(): Collection<Int> = runBlocking { api.getWorldsAsync().await() }
+    fun getWorldIds(): Collection<Int>? = runBlocking { api.getWorldsAsync().body() }
 
     fun getWorld(worldId: Int): World? = runBlocking {
         return@runBlocking try {
-            api.getWorldsAsync(worldId.toString()).await().first()
+            api.getWorldsAsync(worldId.toString()).body()?.first()
         } catch (e: Exception) {
             null
         }
     }
 
-    fun getWorlds(worldIds: MutableList<Int>? = null): Collection<World>? = runBlocking {
+    fun getWorlds(worldIds: MutableList<Int>? = null): List<World>? = runBlocking {
         return@runBlocking try {
-            api.getWorldsAsync(worldIds?.joinToString(",") ?: "all").await()
+            api.getWorldsAsync(worldIds?.joinToString(",") ?: "all").body()
         } catch (e: Exception) {
             null
         }

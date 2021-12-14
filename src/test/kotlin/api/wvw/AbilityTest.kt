@@ -18,7 +18,7 @@ class AbilityTest: GW2MockApi() {
         val testApi = Api("valid_api_key")
         val abilityIds = testApi.WvW(retrofit).getAbilityIds()
 
-        assertEquals(22, abilityIds.size)
+        assertEquals(22, abilityIds?.size)
     }
 
     @Test
@@ -30,13 +30,13 @@ class AbilityTest: GW2MockApi() {
         val testApi = Api("valid_api_key")
         val ability = testApi.WvW(retrofit).getAbility(2)
 
-        assertEquals(2, ability!!.id)
-        assertEquals("Guard Killer", ability.name)
-        assertEquals("Increases damage to enemy guards", ability.description)
-        assertEquals("https://render.guildwars2.com/file/C5E6E906927E2C6311036C11F1306CCF57CBF259/544537.png", ability.icon)
-        assertEquals(5, ability.ranks.size)
-        assertEquals(1, ability.ranks.first().cost)
-        assertEquals("4% damage to guards", ability.ranks.first().effect)
+        assertEquals(2, ability?.id)
+        assertEquals("Guard Killer", ability?.name)
+        assertEquals("Increases damage to enemy guards", ability?.description)
+        assertEquals("https://render.guildwars2.com/file/C5E6E906927E2C6311036C11F1306CCF57CBF259/544537.png", ability?.icon)
+        assertEquals(5, ability?.ranks?.size)
+        assertEquals(1, ability?.ranks?.first()?.cost)
+        assertEquals("4% damage to guards", ability?.ranks?.first()?.effect)
     }
 
 
@@ -56,12 +56,12 @@ class AbilityTest: GW2MockApi() {
 
         val ability = abilityList?.first()
 
-        assertEquals(2, ability!!.id)
-        assertEquals("Guard Killer", ability.name)
-        assertEquals("Increases damage to enemy guards", ability.description)
-        assertEquals("https://render.guildwars2.com/file/C5E6E906927E2C6311036C11F1306CCF57CBF259/544537.png", ability.icon)
-        assertEquals(5, ability.ranks.size)
-        assertEquals(1, ability.ranks.first().cost)
-        assertEquals("4% damage to guards", ability.ranks.first().effect)
+        assertEquals(2, ability?.id)
+        assertEquals("Guard Killer", ability?.name)
+        assertEquals("Increases damage to enemy guards", ability?.description)
+        assertEquals("https://render.guildwars2.com/file/C5E6E906927E2C6311036C11F1306CCF57CBF259/544537.png", ability?.icon)
+        assertEquals(5, ability?.ranks?.size)
+        assertEquals(1, ability?.ranks?.first()?.cost)
+        assertEquals("4% damage to guards", ability?.ranks?.first()?.effect)
     }
 }

@@ -1,9 +1,10 @@
 package guildwars2.api.auth.account
 
-import kotlinx.coroutines.Deferred
+import retrofit2.Response
 import retrofit2.http.GET
 
 interface AccountApi {
 
-    @GET("/v2/account") fun getAccountAsync(): Deferred<Account>
+    @GET("/v2/account")
+    suspend fun getAccountAsync(): Response<Account>
 }

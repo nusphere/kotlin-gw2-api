@@ -8,19 +8,19 @@ interface AbilityExtension {
     val retrofit: Retrofit
     private val api: AbilityApi get() = retrofit.create(AbilityApi::class.java)
 
-    fun getAbilityIds(): List<Int> = runBlocking { api.getAbilityIdsAsync().await() }
+    fun getAbilityIds(): List<Int>? = runBlocking { api.getAbilityIdsAsync().body() }
 
     fun getAbility(abilityId: Int, language: String = "en"): Ability? = runBlocking {
         return@runBlocking try {
-            api.getAbilitiesAsync(abilityId.toString(), language).await().first()
+            api.getAbilitiesAsync(abilityId.toString(), language).body()?.first()
         } catch (e: Exception) {
             null
         }
     }
 
-    fun getAbilities(abilityId: MutableList<Int>? = null, language: String = "en"): Collection<Ability>? = runBlocking {
+    fun getAbilities(abilityId: MutableList<Int>? = null, language: String = "en"): List<Ability>? = runBlocking {
         return@runBlocking try {
-            api.getAbilitiesAsync(abilityId?.joinToString(",") ?: "all", language).await()
+            api.getAbilitiesAsync(abilityId?.joinToString(",") ?: "all", language).body()
         } catch (e: Exception) {
             null
         }
