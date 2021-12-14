@@ -8,40 +8,39 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
 
-class AccountTest: GW2MockApi() {
+class DyesTest: GW2MockApi() {
 
     @Test
-    fun useAuthAccountApiDeniedTest() {
+    fun useDyesApiWithoutPermissionTest() {
         server.apply {
             enqueue(MockResponse().setBody("{\"permissions\": [\"\"]}"))
-            enqueue(MockResponse().setBody(MockResponseFileReader("json/auth/account.json").content))
+            enqueue(MockResponse().setBody(MockResponseFileReader("json/auth/dyes.json").content))
         }
 
         val testApi = Api("valid_api_key")
-
         val exception = assertThrows<Exception> {
-            testApi.Auth(retrofit).getAccount()
+            testApi.Auth(retrofit).getDyesIds()
         }
 
         assertEquals("token has no permission for account", exception.message)
     }
 
     @Test
-    fun useAuthAccountApiTest() {
+    fun useDyesApiTest() {
         server.apply {
             enqueue(MockResponse().setBody("{\"permissions\": [\"account\"]}"))
-            enqueue(MockResponse().setBody(MockResponseFileReader("json/auth/account.json").content))
+            enqueue(MockResponse().setBody(MockResponseFileReader("json/auth/dyes.json").content))
         }
 
         val testApi = Api("valid_api_key")
-        val account = testApi.Auth(retrofit).getAccount()
+        val dyesIds = testApi.Auth(retrofit).getDyesIds()
 
-        assertEquals("Account.1234", account?.name)
+        assertEquals(4, dyesIds?.size)
     }
 
     @Test
-    fun getAccountHeaderApiTest() {
-        val content = MockResponseFileReader("json/auth/account.json").content
+    fun useDyesApiHeaderTest() {
+        val content = MockResponseFileReader("json/auth/dyes.json").content
 
         server.apply {
             enqueue(MockResponse().setBody("{\"permissions\": [\"account\"]}"))
@@ -49,7 +48,7 @@ class AccountTest: GW2MockApi() {
         }
 
         val testApi = Api("valid_api_key")
-        val headers = testApi.Auth(retrofit).getAccountHeaders()
+        val headers = testApi.Auth(retrofit).getDyesHeaders()
 
         assertEquals(content.length.toString(), headers?.get("Content-Length"))
     }

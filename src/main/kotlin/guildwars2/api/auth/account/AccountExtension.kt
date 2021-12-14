@@ -14,7 +14,7 @@ interface AccountExtension: Permission {
         return@runBlocking getAccountResponse()?.body()
     }
 
-    fun getAccountHeader(): Headers? = runBlocking {
+    fun getAccountHeaders(): Headers? = runBlocking {
         return@runBlocking getAccountResponse()?.headers()
     }
 
