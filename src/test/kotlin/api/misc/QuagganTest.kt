@@ -70,4 +70,47 @@ class QuagganTest: GW2MockApi() {
 
         assertEquals(35, quaggans?.size)
     }
+
+    @Test
+    fun getQuagganImageIdHeadersApiTest() {
+        val content = MockResponseFileReader("json/misc/quaggans.json").content
+
+        server.apply {
+            enqueue(MockResponse().setBody(content))
+        }
+
+        val testApi = Api("valid_api_key")
+        val headers = testApi.Misc(retrofit).getQuagganImageIdHeaders()
+
+        assertEquals(content.length.toString(), headers?.get("Content-Length"))
+    }
+
+    @Test
+    fun getQuagganHeadersApiTest() {
+        val content = MockResponseFileReader("json/misc/quaggan-404.json").content
+
+        server.apply {
+            enqueue(MockResponse().setBody(content))
+        }
+
+        val testApi = Api("valid_api_key")
+        val headers = testApi.Misc(retrofit).getQuagganHeaders("404")
+
+        assertEquals(content.length.toString(), headers?.get("Content-Length"))
+    }
+
+    @Test
+    fun getQuaggansHeadersApiTest() {
+        val content = MockResponseFileReader("json/misc/quaggan-404-knight.json").content
+
+        server.apply {
+            enqueue(MockResponse().setBody(content))
+        }
+
+        val testApi = Api("valid_api_key")
+        val request = mutableListOf("404", "knight")
+        val headers = testApi.Misc(retrofit).getQuaggansHeaders(request)
+
+        assertEquals(content.length.toString(), headers?.get("Content-Length"))
+    }
 }
