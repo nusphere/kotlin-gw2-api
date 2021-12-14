@@ -28,7 +28,7 @@ class AccountTest: GW2MockApi() {
     @Test
     fun useAuthAccountApiTest() {
         server.apply {
-            enqueue(MockResponse().setBody(MockResponseFileReader("json/auth/account-permission.json").content))
+            enqueue(MockResponse().setBody("{\"permissions\": [\"account\"]}"))
             enqueue(MockResponse().setBody(MockResponseFileReader("json/auth/account.json").content))
         }
 
@@ -43,7 +43,7 @@ class AccountTest: GW2MockApi() {
         val content = MockResponseFileReader("json/auth/account.json").content
 
         server.apply {
-            enqueue(MockResponse().setBody(MockResponseFileReader("json/auth/account-permission.json").content))
+            enqueue(MockResponse().setBody("{\"permissions\": [\"account\"]}"))
             enqueue(MockResponse().setBody(content))
         }
 
