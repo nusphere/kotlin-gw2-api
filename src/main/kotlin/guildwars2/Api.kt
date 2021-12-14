@@ -3,6 +3,7 @@ package guildwars2
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import guildwars2.api.auth.account.AccountExtension
 import guildwars2.api.auth.dyes.DyesExtension
+import guildwars2.api.auth.finisher.FinisherExtension
 import guildwars2.api.auth.tokeninfo.TokenInfoExtension
 import guildwars2.api.misc.build.BuildExtension
 import guildwars2.api.misc.color.ColorExtension
@@ -36,7 +37,7 @@ class Api (private var apiKey: String)
 
     inner class Auth(
         override val retrofit: Retrofit = this.retrofit,
-    ): AccountExtension, TokenInfoExtension, DyesExtension
+    ): AccountExtension, TokenInfoExtension, DyesExtension, FinisherExtension
 
     inner class Misc(
         override val retrofit: Retrofit = this.retrofit,
