@@ -10,7 +10,7 @@ import kotlin.test.assertEquals
 class WvWTest: GW2MockApi() {
 
     @Test
-    fun useAbilityIdsApiTest() {
+    fun getApiTypesApiTest() {
         server.apply {
             enqueue(MockResponse().setBody(MockResponseFileReader("json/wvw/wvw.json").content))
         }
@@ -21,4 +21,17 @@ class WvWTest: GW2MockApi() {
         assertEquals(5, apiTypes?.size)
     }
 
+    @Test
+    fun getApiTypeHeadersApiTest() {
+        val content = MockResponseFileReader("json/wvw/wvw.json").content
+
+        server.apply {
+            enqueue(MockResponse().setBody(content))
+        }
+
+        val testApi = Api("valid_api_key")
+        val headers = testApi.WvW(retrofit).getApiTypeHeaders()
+
+        assertEquals(content.length.toString(), headers?.get("Content-Length"))
+    }
 }
