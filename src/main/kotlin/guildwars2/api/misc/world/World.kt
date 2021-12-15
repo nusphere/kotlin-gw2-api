@@ -17,7 +17,7 @@ data class World(
     var name: String,
     var population: String
 ) {
-    val region: String get() = if (this.id.toString()[0] == '1') "North America" else "Europa"
+    val region: String get() = if (this.id.toString()[0] == '1') "North America" else "Europe"
 
     val language: String get() = when (this.id.toString()[1]) {
         '1' -> "French"
