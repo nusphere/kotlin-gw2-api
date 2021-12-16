@@ -5,6 +5,7 @@ import helper.GW2MockApi
 import helper.MockResponseFileReader
 import okhttp3.mockwebserver.MockResponse
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
 
 class ColorTest: GW2MockApi() {
@@ -62,7 +63,24 @@ class ColorTest: GW2MockApi() {
     }
 
     @Test
-    fun useAbilitiesApiTest() {
+    fun getColorApiExceptionTest() {
+        val content = MockResponseFileReader("json/misc/color-10.json").content
+
+        server.apply {
+            enqueue(MockResponse().setBody(content))
+        }
+
+        val testApi = Api("valid_api_key")
+
+        val exception = assertThrows<Exception> {
+            testApi.Misc(retrofit).getColor(8, "deutsch")
+        }
+
+        assertEquals("wrong language code", exception.message)
+    }
+
+    @Test
+    fun useColorsApiTest() {
         server.apply {
             enqueue(MockResponse().setBody(MockResponseFileReader("json/misc/colors-1245-1246.json").content))
         }
@@ -80,7 +98,7 @@ class ColorTest: GW2MockApi() {
     }
 
     @Test
-    fun getAbilitiesHeadersApiTest() {
+    fun getColorsHeadersApiTest() {
         val content = MockResponseFileReader("json/misc/colors-1245-1246.json").content
 
         server.apply {
@@ -92,5 +110,23 @@ class ColorTest: GW2MockApi() {
         val headers = testApi.Misc(retrofit).getColorsHeaders(list)
 
         assertEquals(content.length.toString(), headers?.get("Content-Length"))
+    }
+
+    @Test
+    fun getColorsApiExceptionTest() {
+        val content = MockResponseFileReader("json/misc/colors-1245-1246.json").content
+
+        server.apply {
+            enqueue(MockResponse().setBody(content))
+        }
+
+        val testApi = Api("valid_api_key")
+
+        val exception = assertThrows<Exception> {
+            val list = mutableListOf(1245, 156)
+            testApi.Misc(retrofit).getColors(list, "deutsch")
+        }
+
+        assertEquals("wrong language code", exception.message)
     }
 }
