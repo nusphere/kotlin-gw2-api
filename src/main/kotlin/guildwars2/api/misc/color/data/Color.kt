@@ -18,14 +18,14 @@ import com.google.gson.annotations.SerializedName
  * @property baseRGB The base RGB values.
  */
 data class Color(
-    var id: Long,
+    var id: Int,
     var name: String,
     @SerializedName("base_rgb") private var baseRGBArray: List<Int>,
     var cloth: ColorDetail,
     var leather: ColorDetail,
     var metal: ColorDetail,
     var fur: ColorDetail?,
-    var item: Long?,
+    var item: Int,
     var categories: List<String>
 ) {
     val baseRGB: RGB

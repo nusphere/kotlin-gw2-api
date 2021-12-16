@@ -1,12 +1,15 @@
 package api.misc
 
 import guildwars2.Api
+import guildwars2.api.misc.color.data.ColorDetail
+import guildwars2.api.misc.color.data.RGB
 import helper.GW2MockApi
 import helper.MockResponseFileReader
 import okhttp3.mockwebserver.MockResponse
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import kotlin.test.assertEquals
+import kotlin.test.assertIs
 
 class ColorTest: GW2MockApi() {
 
@@ -46,6 +49,24 @@ class ColorTest: GW2MockApi() {
         val color = testApi.Misc(retrofit).getColor(10)
 
         assertEquals(10, color?.id)
+        assertEquals("Himmel", color?.name)
+        assertIs<RGB>(color?.baseRGB)
+        assertIs<ColorDetail>(color?.cloth)
+        assertIs<ColorDetail>(color?.leather)
+        assertIs<ColorDetail>(color?.metal)
+        assertIs<ColorDetail>(color?.fur)
+        assertEquals(20370, color?.item)
+        assertIs<List<String>>(color?.categories)
+
+        val colorDetail = color?.cloth
+
+        assertEquals(22, colorDetail?.brightness)
+        assertEquals(1.25, colorDetail?.contrast)
+        assertEquals(196, colorDetail?.hue)
+        assertEquals(0.742188, colorDetail?.saturation)
+        assertEquals(1.32813, colorDetail?.lightness)
+
+        assertIs<RGB>(colorDetail?.rgb)
     }
 
     @Test
