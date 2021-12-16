@@ -147,7 +147,7 @@ dependencies {
 | Map information     | maps                         | open        |
 | Miscellaneous       | build                        | implemented |
 | Miscellaneous       | colors                       | implemented |
-| Miscellaneous       | currencies                   | open        |
+| Miscellaneous       | currencies                   | implemented |
 | Miscellaneous       | dungeons                     | open        |
 | Miscellaneous       | files                        | open        |
 | Miscellaneous       | quaggans                     | implemented |

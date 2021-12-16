@@ -7,6 +7,7 @@ import guildwars2.api.auth.finisher.FinisherExtension
 import guildwars2.api.auth.tokeninfo.TokenInfoExtension
 import guildwars2.api.misc.build.BuildExtension
 import guildwars2.api.misc.color.ColorExtension
+import guildwars2.api.misc.currency.CurrencyExtension
 import guildwars2.api.misc.quaggan.QuagganExtension
 import guildwars2.api.misc.title.TitleExtension
 import guildwars2.api.misc.world.WorldExtension
@@ -44,7 +45,7 @@ class Api (private var apiKey: String)
 
     inner class Misc(
         override val retrofit: Retrofit = this.retrofit,
-    ): WorldExtension, BuildExtension, TitleExtension, ColorExtension, QuagganExtension
+    ): WorldExtension, BuildExtension, TitleExtension, ColorExtension, QuagganExtension, CurrencyExtension
 
     inner class WvW(
         override val retrofit: Retrofit = this.retrofit,
